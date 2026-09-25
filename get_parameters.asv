@@ -1,0 +1,18 @@
+function [paramsMaterial,paramsBoundary,params_prestress] = get_parameters
+
+% Material constant
+B = 10^(0); mu = 10^(0); 
+lambda_0 = 0.; lambda_s = -0.0; 
+
+del_mu = -0.0*mu;
+paramsMaterial = [B,mu,lambda_0,lambda_s,del_mu];
+
+% Boundary condition 
+K0 = 10^(-4); mu0 = 10^(-4);
+paramsBoundary = [K0,mu0];
+
+% Pre-stress coefficient 
+m_iso = 1; m_aniso = 0;
+params_prestress = [m_iso,m_aniso];
+
+end 
