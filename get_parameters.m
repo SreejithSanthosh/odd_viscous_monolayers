@@ -1,8 +1,8 @@
-function [material_moduli,kappa,params_sfbc] = get_parameters
+function [material_moduli,kappa,m_iso] = get_parameters
 
 % Material constant
 bulk_visc = 1; shear_visc = 10^(0); 
-lambda_0 = 0; lambda_s = 0.0; 
+lambda_0 = 0.0; lambda_s = 0.2; 
 
 del_nu = 0;
 material_moduli = [bulk_visc,shear_visc,lambda_0,lambda_s,del_nu];
@@ -11,6 +11,5 @@ material_moduli = [bulk_visc,shear_visc,lambda_0,lambda_s,del_nu];
 kappa = 10^(-4); 
 
 % Pre-stress coefficient 
-m_iso = 0; m_aniso = 1;
-params_sfbc = [m_iso, m_aniso];
+m_iso = 1; 
 end 

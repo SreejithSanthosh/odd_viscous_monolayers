@@ -1,5 +1,5 @@
 function bcCond = bc_drag(location,~)
-% The dirichlet componenet of boundary condition to generate 
+% The dirichlet componenet of boundary condition to 
 % generate a finite velocity field (constrain the null space of possible velocity fields)
 nx = location.nx; ny = location.ny;
 [~,kappa,~] = get_parameters;

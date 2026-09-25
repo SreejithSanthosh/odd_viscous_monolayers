@@ -1,0 +1,6 @@
+* text=auto
+*.m text
+*.md text
+*.png binary
+*.fig binary
+*.mat binary

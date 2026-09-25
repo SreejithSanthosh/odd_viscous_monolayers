@@ -2,18 +2,19 @@
 % Created: 9/21/26
 % The parameters are defined in get_parameters.m: Use that file to change
 % the material properties 
+% To change the nematic field being probed, change it using the file
+% orient_order.m
 
 clear; clc; close all;
 fntSz = 20; linSz = 1;
 
 %% Using PDE toolbox 
-
 % Define Eqns and geometry 
 model = createpde(2); 
 geometryFromEdges(model,@circleg);
 
 % Specify the coefficients 
-specifyCoefficients(model,"m",0,"d",0,"c",@coeff,"a",0,"f",@activeforcing);
+specifyCoefficients(model,"m",0,"d",0,"c",@coeff,"a",0,"f",[0,0]');
 applyBoundaryCondition(model,"neumann","edge",1:model.Geometry.NumEdges,"q",@bc_drag,"g",@bc_sfbc);
 
 % Generate mesh and solve the equation 
@@ -42,8 +43,3 @@ EdPhi(EdMag == 0) = NaN; % No unique principal axis at zero magnitude
 
 [fig, ax] = plot_fields(X, Y, uinterp, vinterp, ux, uy, vx, vy, ...
     EdMag, EdPhi, fntSz, linSz);
-
-% Optional fixed limits for the mean-stress panel:
-% clim(ax(5), [-0.25, 0.35]);  % n = 0.5
-% clim(ax(5), [-0.1, 0.2]);    % n = -0.5
-exportgraphics(fig, 'single.png', 'Resolution', 300, 'BackgroundColor', 'white');
